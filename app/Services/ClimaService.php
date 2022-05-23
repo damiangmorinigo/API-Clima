@@ -64,7 +64,11 @@ class ClimaService
             
                 if ($statusRequest['http_code'] == 200) {
                     //##############################################################
-                    $data=array();
+                    if($responseData['success'] == false){ //DE CUMPLIRSE ESTA CONDICIÓN QUIERE DECIR QUE NO SE ENCONTARON COINCIDENCIAS
+                        return $responseData;
+                    }
+                    
+                    $data=array(); 
                     $data['queryAPI'] = $responseData['request']['query']; 
                     $data['query'] = $query; 
                     $data['type'] = $responseData['request']['type']; 
