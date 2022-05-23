@@ -64,12 +64,16 @@ class ClimaService
                 $responseData = json_decode($response, TRUE);	
                 $statusRequest = curl_getinfo($curl);
             
+                
                 if ($statusRequest['http_code'] == 200) {
                     //##############################################################
-                    if($responseData['success'] == false){ //DE CUMPLIRSE ESTA CONDICIÓN QUIERE DECIR QUE NO SE ENCONTARON COINCIDENCIAS
-                        return $responseData;
-                    }
                     
+                    if (array_key_exists('success', $responseData)) { 
+                        if($responseData['success'] == false){ //DE CUMPLIRSE ESTA CONDICIÓN QUIERE DECIR QUE NO SE ENCONTARON COINCIDENCIAS
+                            return $responseData;
+                        }
+                    }
+
                     $data=array(); 
                     $data['queryAPI'] = $responseData['request']['query']; 
                     $data['query'] = $query; 
