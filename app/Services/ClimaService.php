@@ -12,7 +12,8 @@ class ClimaService
     {      
 
            $hora_actual = date("H:00");  //HORA ACTUAL DE CONSULTA
-           if (DB::table('clima')->where('query', $query) -> whereTime('hora_consulta',$hora_actual )->exists()) {
+           //DE CUMPLIRSE ESTA CONDICIÓN SOLO DEBO CONSULTAR A LA BASE DE DATOS Y NO A AL END POINT EXTERNO
+           if (DB::table('clima')->where('query', $query) -> whereTime('hora_consulta',$hora_actual )->exists()) { 
 
               $tablaClima = DB::table('clima')->where('query', $query)->whereTime('hora_consulta',$hora_actual )
               ->select(
@@ -41,7 +42,8 @@ class ClimaService
                     'is_day',
             )
              -> get();
-              return $tablaClima;
+            
+             return $tablaClima;
 
            }else{
               
