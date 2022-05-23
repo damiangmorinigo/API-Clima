@@ -33,7 +33,7 @@ class ClimaController extends Controller
 
       if($consulta == ""){   
         $data['ERROR'] = "Debe ingresarse la Query.";
-        return response()->json($data['ERROR'], 403);
+        return response()->json($data['ERROR'], 200);
       }
 
       $ClimaResponse = $ClimaService->ConsultarCima($consulta);
